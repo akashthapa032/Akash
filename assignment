@@ -1,0 +1,139 @@
+// Akash Thapa
+//
+// class :- COSC 2336-01E
+// Assigment 1 WordCounter
+/// This program take input from the user and calculate  no. of character,
+// average word, large wor, smallword from the list user input and doesnot store all the list
+
+#include <iostream>
+using namespace std;
+
+
+
+// declare the class
+class wordCounter{
+	
+	//declaring all the variables
+	private:
+		string A;         // this string stores the last variable and update in every input
+		int size;
+		int totalCharacter;
+		int averageCharacters;
+		string longest;
+		string smallest;
+		
+	public:
+		wordCounter();
+		
+		wordCounter(string S);	
+		
+		//declaring the functions
+		void setString(string S);
+			int getsize();
+			int getTotalCharacter();
+			int getAverageCharacters();
+			string getLongest();
+			string getsmallestWord();
+			string lastword();
+			 
+		
+		
+		
+		
+};
+//default constructor
+wordCounter::wordCounter(){
+	//initializing the the values of variable
+	size =0;
+	totalCharacter=0;
+	averageCharacters=0;
+	longest="";
+	smallest="";
+	}
+wordCounter::wordCounter(string A){
+	++size;
+	totalCharacter= A.length();
+	averageCharacters= (totalCharacter)/size;
+	
+}
+void wordCounter :: setString(string S){
+	A=S;    //string A store the string S which takes values from user input
+	++size; // this increase the size of list at every input
+}
+int wordCounter::getsize(){
+	return size; // return the size of list
+}
+int wordCounter::getTotalCharacter(){             // total character is add with the no. of character of last input word and
+	totalCharacter= totalCharacter +A.length();    //update the totalcharacter value
+
+	return totalCharacter;                    // gives values of totalCharacter   
+}
+int wordCounter::getAverageCharacters(){      // total character value is divide by Size of list to get average character in list
+	averageCharacters= totalCharacter/size;
+	return averageCharacters;  // gives values of averagecharacters in list
+}
+string wordCounter::getLongest(){  
+ //last enter word is compare with longest word. if recent word is greater than longest word then longest word is update by recent word
+ // otherwise remmain same
+	if(A.length()>longest.length()){
+		longest=A;
+	
+	}
+	else{
+	 longest; 
+	}
+	return longest;  // gives the values of longest word
+}
+string wordCounter::getsmallestWord(){
+	if(size==1){   //at first smallest word is input word. size ==1  at first only. so this condition valid for once and move to else
+		smallest=A;
+	}
+	else{
+		//if the last word is smaller than smallest word, then smallest word is replace by last word entered 
+	    //otherwise smallest word remains the same.
+	    
+		  if(A.length()<smallest.length()){
+		  
+		smallest=A;
+		}
+		else{
+			smallest;
+		}
+	}
+	
+	return smallest;
+}
+string wordCounter::lastword(){
+	return A;   //gives the value of last word . "A" stores temporarly the last user input
+}
+
+int main() {
+	wordCounter box; //declaring the object
+	
+	int x=0;   //initializing values of x at 0 for "do while" loop
+		
+	do{
+		//get the input from the User
+	string newWord;
+	cout<<"Please Enter the Word:- ";
+	cin>>newWord;
+	
+	//takes the User input to class for the calculation
+	box.setString(newWord);	
+	
+	
+	//print the result
+	cout<<"No. of Words in the list:- "<<box.getsize()<<endl;
+	cout<<"Total Characters in the list:- "<<box.getTotalCharacter()<<endl;
+	cout<<"Average Character in the list:-"<<box.getAverageCharacters()<<endl; 
+	cout<< "Last Word in the list:- " <<box.lastword()<< endl;
+	cout<< "Largest Word in the list:- "<<box.getLongest()<<endl;
+	cout<<"smallest Word in the list:- "<<box.getsmallestWord()<<endl;
+	
+	//give option to user
+	cout<<"Please Enter 0 to continue and 1 to end"<< endl;
+	cin>>x;
+	}
+	while(x<1);
+	
+}
